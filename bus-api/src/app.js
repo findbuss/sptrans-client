@@ -1,7 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import linesRoute from "./routes/lines.route.js";
+import shapesRouter from "./routes/shapes.router.js";
+import linesRouter from "./routes/lines.router.js";
 
 dotenv.config();
 
@@ -11,7 +12,8 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-app.use("/lines", linesRoute);
+app.use("/lines", linesRouter);
+app.use("/shapes", shapesRouter);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
