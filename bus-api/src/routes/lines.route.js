@@ -3,9 +3,9 @@ import express from "express";
 
 const linesRouter = express.Router();
 
-linesRouter.get("/", async (req, res) => {
-  const lines = await getLines("Itaquera");
-  console.log(lines);
+linesRouter.get("/:terms", async (req, res) => {
+  const { terms } = req.params;
+  const lines = await getLines(terms);
 
   res.json(lines);
 });

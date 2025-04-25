@@ -13,8 +13,6 @@ app.use(express.json());
 
 app.use("/lines", linesRoute);
 
-console.log("Dados GTFS carregados com sucesso!");
-
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
