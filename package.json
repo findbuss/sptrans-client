@@ -7,7 +7,7 @@
     "bus-server"
   ],
   "scripts": {
-    "start-server": "yarn workspace bus-server start",
-    "start-client": "yarn workspace bus-api start"
+    "start-server": "cd bus-server && yarn start",
+    "start-client": "cd bus-api && yarn start"
   }
 }
