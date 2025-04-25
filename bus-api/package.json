@@ -1,0 +1,17 @@
+{
+  "name": "bus-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "DouglasDans",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "bus-promise": "^1.1.7",
+    "express": "^5.1.0"
+  }
+}

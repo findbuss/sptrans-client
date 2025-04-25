@@ -3,11 +3,11 @@
   "packageManager": "yarn@4.6.0",
   "private": true,
   "workspaces": [
-      "bus-client-rest",
-      "bus-server"
+    "bus-api",
+    "bus-server"
   ],
   "scripts": {
-    "start-server": "yarn workspace bus-server serve",
-    "start-client": "yarn workspace bus-client-rest start"
+    "start-server": "yarn workspace bus-server start",
+    "start-client": "yarn workspace bus-api start"
   }
 }
