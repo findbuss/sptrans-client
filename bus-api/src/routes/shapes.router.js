@@ -15,7 +15,7 @@ async function getShapeById(shapeId) {
   return await bus.find({
     auth,
     type: "shapes",
-    shapeId: "63468",
+    shapeId,
   });
 }
 
