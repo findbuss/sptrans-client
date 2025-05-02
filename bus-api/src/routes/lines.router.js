@@ -10,11 +10,19 @@ linesRouter.get("/:terms", async (req, res) => {
   res.json(lines);
 });
 
-async function getLines(terms) {
+linesRouter.get("/:terms/:direction", async (req, res) => {
+  const { terms, direction } = req.params;
+  const lines = await getLines(terms, direction);
+
+  res.json(lines);
+});
+
+async function getLines(terms, direction = undefined) {
   return await bus.find({
     auth,
     type: "lines",
     terms,
+    direction
   });
 }
 
