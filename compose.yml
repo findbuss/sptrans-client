@@ -18,6 +18,8 @@ services:
       - 5000:5000
     networks:
       - bus-network
+    env_file:
+      - ./bus-api/.env
 
 networks:
   bus-network:
