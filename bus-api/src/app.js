@@ -5,6 +5,8 @@ import shapesRouter from "./routes/shapes.router.js";
 import linesRouter from "./routes/lines.router.js";
 import stopsRouter from "./routes/stops.router.js";
 import positionRouter from "./routes/position.router.js";
+import startGtfsConfig from "./config/gtfs.config.js";
+
 
 dotenv.config();
 
@@ -13,6 +15,8 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+startGtfsConfig;
 
 app.use("/lines", linesRouter);
 app.use("/shapes", shapesRouter);

@@ -1,3 +1,4 @@
+import { getShapesAsGeoJSON } from "gtfs";
 import { bus, auth } from "../config.js";
 import express from "express";
 
@@ -5,8 +6,7 @@ const shapesRouter = express.Router();
 
 shapesRouter.get("/:shapeId", async (req, res) => {
   const { shapeId } = req.params;
-  const shapes = await getShapeById(shapeId);
-  console.log(shapes, shapeId);
+  const shapes = getShapesAsGeoJSON({shape_id: shapeId})
 
   res.json(shapes);
 });
