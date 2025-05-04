@@ -1,39 +1,43 @@
 import { bus, auth } from "../config.js";
+import { getStopsAsGeoJSON } from "gtfs";
 import express from "express";
 
 const stopsRouter = express.Router();
 
-stopsRouter.get("/", async (req, res) => {
-  const stps = await getStops();
-  res.json(stps);
+stopsRouter.get("/", (req, res) => {
+  const {
+    stop_id,
+    stop_lat,
+    stop_lon,
+    bounding_box_side_m,
+    route_id,
+    shape_id,
+  } = req.query;
+
+  if (stop_lat && stop_lon && bounding_box_side_m) {
+    const stopsGeojson = getStopsAsGeoJSON(
+      { stop_lat, stop_lon },
+      { bounding_box_side_m }
+    );
+    res.json(stopsGeojson);
+  }
+
+  if (route_id) {
+    const stopsGeojson = getStopsAsGeoJSON({ route_id });
+    res.json(stopsGeojson);
+  }
+
+  if (shape_id) {
+    const stopsGeojson = getStopsAsGeoJSON({ shape_id });
+    res.json(stopsGeojson);
+  }
+
+  if (stop_id) {
+    const stopsGeojson = getStopsAsGeoJSON({ stop_id });
+    res.json(stopsGeojson);
+  }
+
+  res.json({});
 });
-
-stopsRouter.get("/:terms", async (req, res) => {
-  const { terms } = req.params;
-  const stops = await getStops(terms);
-  res.json(stops);
-});
-
-stopsRouter.get("/line/:lineId", async (req, res) => {
-  const { lineId } = req.params;
-  const stops = await getAllStopsByLineId(lineId);
-  res.json(stops);
-});
-
-async function getStops(terms = "*") {
-  return await bus.find({
-    auth,
-    type: "stops",
-    terms
-  });
-}
-
-async function getAllStopsByLineId(lineId) {
-  return await bus.find({
-    auth,
-    type: "stopsByLine",
-    lineId,
-  });
-}
 
 export default stopsRouter;
