@@ -9,7 +9,7 @@ stopsRouter.get("/", (req, res) => {
     stop_id,
     stop_lat,
     stop_lon,
-    bounding_box_side_m,
+    bounding_box_side_m = 1000,
     route_id,
     shape_id,
   } = req.query;
