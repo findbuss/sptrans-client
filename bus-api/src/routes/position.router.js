@@ -10,9 +10,9 @@ positionRouter.get("/:lineId", async (req, res) => {
   res.json(vehicles);
 });
 
-positionRouter.get("/arrival/:lineId", async (req, res) => {
-  const { lineId, stopId } = req.params;
-  const vehicles = await getLineForecast(lineId, stopId);
+positionRouter.get("/arrival/:stopId", async (req, res) => {
+  const { stopId } = req.params;
+  const vehicles = await getStopForecast(stopId);
 
   res.json(vehicles);
 });
@@ -41,11 +41,11 @@ async function getArrivalForecast(lineId, stopId) {
   });
 }
 
-async function getLineForecast(lineId) {
+async function getStopForecast(stopId) {
   return await bus.find({
     auth,
-    type: "lineForecast",
-    lineId,
+    type: "stopForecast",
+    stopId,
   });
 }
 
